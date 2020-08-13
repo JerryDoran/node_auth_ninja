@@ -1,0 +1,25 @@
+GET http://localhost:3000/signup
+###
+
+POST http://localhost:3000/login
+
+###
+
+POST http://localhost:3000/signup
+content-type: application/json
+
+{
+	"email": "luigi@mariokart.com",
+	"password": "lugi123"
+}
+###
+
+PUT http://localhost:3000/customers/5e8b51e22d52b2209cb6f96c
+content-type: application/json
+
+{
+    "name": "Mario the Plummer"    
+}
+###
+
+DELETE http://localhost:3000/customers/5e8b51e22d52b2209cb6f96c

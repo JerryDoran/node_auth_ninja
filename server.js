@@ -8,6 +8,11 @@ const app = express();
 // middleware
 app.use(express.static('public'));
 
+// if a 'post' request is sent to an end point (login for example) and json data is sent
+// then this line of code takes the json data and parses it into a javascript object and
+// attaches it to the request(req) object inside the route handler in the authController file.
+app.use(express.json());
+
 // view engine
 app.set('view engine', 'ejs');
 
