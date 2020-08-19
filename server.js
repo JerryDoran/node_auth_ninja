@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const colors = require('colors');
 const authRoutes = require('./routes/authRoutes');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.static('public'));
 // then this line of code takes the json data and parses it into a javascript object and
 // attaches it to the request(req) object inside the route handler in the authController file.
 app.use(express.json());
+app.use(cookieParser());
 
 // view engine
 app.set('view engine', 'ejs');
@@ -37,3 +39,24 @@ mongoose
 app.get('/', (req, res) => res.render('home'));
 app.get('/smoothies', (req, res) => res.render('smoothies'));
 app.use(authRoutes);
+
+// cookies
+app.get('/set-cookies', (req, res) => {
+  // res.setHeader('Set-Cookie', 'newUser=true');
+
+  // use cookie-parser
+  res.cookie('newUser', false);
+  res.cookie('isEmployee', true, {
+    maxAge: 1000 * 60 * 60 * 24,
+    httpOnly: true,
+  });
+  res.send('you got the cookie!');
+});
+
+app.get('/read-cookies', (req, res) => {
+  const cookies = req.cookies;
+  console.log(cookies);
+  console.log(cookies.newUser);
+
+  res.json(cookies);
+});
