@@ -11,8 +11,8 @@ const handleErrors = (err) => {
   };
 
   // duplicate error code
-  if(err.code === 11000){
-    errors.email = 'That email is already registered'
+  if (err.code === 11000) {
+    errors.email = 'That email is already registered';
   }
 
   // validation errors
